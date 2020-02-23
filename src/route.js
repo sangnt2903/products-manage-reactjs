@@ -3,9 +3,10 @@ import Home from './components/Home';
 import About from './components/About';
 import Contact from './components/Contact';
 import NotFound from './components/NotFound';
-import Products from './components/Products';
-import Product from './components/Product';
-
+import Products from './components/Products/Products';
+import Product from './components/Products/Product';
+import ProductsManage from './components/products-manage/ProductsManage';
+import ProductActionPage from './pages/ProductActionPage/ProductActionPage';
 const routes = [
     {
         path: '/',
@@ -31,6 +32,26 @@ const routes = [
         path: '/products/:slug',
         exact: false,
         main: ({ match }) => <Product match={match} />
+    },
+    {
+        path: '/products-manage',
+        exact: true,
+        main: ({ match }) => <ProductsManage match={match} />
+    },
+    {
+        path: '/products-manage/add',
+        exact: false,
+        main: ({ history }) => <ProductActionPage history={history} />
+    },
+    {
+        path: '/products-manage/:id/edit',
+        exact: false,
+        main: ({ match, history }) => <ProductActionPage match={match} history={history} />
+    },
+    {
+        path: '/products-manage/:id/delete',
+        exact: false,
+        main: () => <ProductActionPage />
     },
     {
         path: '',
